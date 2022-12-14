@@ -22,6 +22,8 @@ public abstract class Transport {
 
     public abstract void finish();
 
+    public abstract void printType();
+
 
     public String getBrand() {
         return brand;

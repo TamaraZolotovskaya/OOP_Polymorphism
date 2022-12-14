@@ -1,9 +1,50 @@
 package transport;
 
 public class Truck extends Car implements Compete {
-    public Truck(String brand, String model, double engineVolume) {
+    private LoadCapacity loadCapacity;
+
+    public Truck(String brand, String model, double engineVolume, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume);
+        this.loadCapacity = loadCapacity;
     }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
+    public enum LoadCapacity{
+        N1 (null, 3.5F),
+        N2 (3.5F, 12F),
+        N3 (12F, null);
+
+        private final Float min;
+        private final Float max;
+
+        LoadCapacity(Float min, Float max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        public Float getMin() {
+            return min;
+        }
+
+        public Float getMax() {
+            return max;
+        }
+
+        @Override
+        public String toString() {
+            if (min==null) {return "Грузоподьемность до "+max;}
+            if (max==null) {return "Грузоподьемность от " +min;}
+            return "Грузоподьемность от " + min + " тонн до " + max + " тонн";
+        }
+    }
+
 
     @Override
     public void start() {
@@ -29,6 +70,24 @@ public class Truck extends Car implements Compete {
     public void maxSpeed() {
         System.out.println("Выводим максимальную скорость для грузового автомобиля " + getBrand() + " " + getModel());
     }
+
+    @Override
+    public void printType() {
+        if (loadCapacity==null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
+        else
+        {
+        //    if(loadCapacity.getMin()==null){String from =" ";}
+        //   else {String from = "от "+ loadCapacity.min+" ";}
+        //if(loadCapacity.getMax()==null){String to =" ";}
+        //else {String to = "до "+ loadCapacity.max;}
+       String from = loadCapacity.min == null ? "" : "от "+loadCapacity.max+" ";
+       String to = loadCapacity.max == null ? "" : "до "+loadCapacity.max;
+        System.out.println(getBrand()+" имеет грузоподьемность "+from+to);}
+    }
+
+
 
 
 }
