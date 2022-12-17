@@ -79,5 +79,10 @@ public class PassengerCar extends Car implements Compete {
         else
             System.out.println(getBrand()+" имеет тип кузова " + bodyType.russianName);
     }
+
+    @Override
+    public boolean servise() {
+        return Math.random()>0.5;
+    }
 }
 

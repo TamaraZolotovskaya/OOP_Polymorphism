@@ -1,3 +1,5 @@
+package driver;
+
 import transport.StringUtils;
 import transport.Transport;
 
@@ -5,6 +7,7 @@ public abstract class Driver<T extends Transport> {
     private final String name;
     private boolean IsLicense;
     private int experience;
+
 
     public Driver(String name, int experience) {
         if (StringUtils.IsNullOrBlank(name)) {
@@ -55,4 +58,12 @@ public abstract class Driver<T extends Transport> {
     }
 
 
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "name='" + name + '\'' +
+                ", IsLicense=" + IsLicense +
+                ", experience=" + experience +
+                '}';
+    }
 }

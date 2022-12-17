@@ -82,4 +82,9 @@ public class Bus extends Transport implements Compete {
         System.out.println(getBrand()+" имеет вместимость "+getCapacity().name());
     }
 
+    @Override
+    public boolean servise() {
+        System.out.println("Диагностика "+getBrand()+" автобуса не требуется");
+        return true;
+    }
 }

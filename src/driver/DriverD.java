@@ -1,3 +1,6 @@
+package driver;
+
+import driver.Driver;
 import transport.Bus;
 
 public class DriverD extends Driver<Bus> {

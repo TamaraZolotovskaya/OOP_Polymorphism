@@ -16,10 +16,10 @@ public class Truck extends Car implements Compete {
         this.loadCapacity = loadCapacity;
     }
 
-    public enum LoadCapacity{
-        N1 (null, 3.5F),
-        N2 (3.5F, 12F),
-        N3 (12F, null);
+    public enum LoadCapacity {
+        N1(null, 3.5F),
+        N2(3.5F, 12F),
+        N3(12F, null);
 
         private final Float min;
         private final Float max;
@@ -39,8 +39,12 @@ public class Truck extends Car implements Compete {
 
         @Override
         public String toString() {
-            if (min==null) {return "Грузоподьемность до "+max;}
-            if (max==null) {return "Грузоподьемность от " +min;}
+            if (min == null) {
+                return "Грузоподьемность до " + max;
+            }
+            if (max == null) {
+                return "Грузоподьемность от " + min;
+            }
             return "Грузоподьемность от " + min + " тонн до " + max + " тонн";
         }
     }
@@ -73,21 +77,19 @@ public class Truck extends Car implements Compete {
 
     @Override
     public void printType() {
-        if (loadCapacity==null) {
+        if (loadCapacity == null) {
             System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            String from = loadCapacity.min == null ? "" : "от " + loadCapacity.max + " ";
+            String to = loadCapacity.max == null ? "" : "до " + loadCapacity.max;
+            System.out.println(getBrand() + " имеет грузоподьемность " + from + to);
         }
-        else
-        {
-        //    if(loadCapacity.getMin()==null){String from =" ";}
-        //   else {String from = "от "+ loadCapacity.min+" ";}
-        //if(loadCapacity.getMax()==null){String to =" ";}
-        //else {String to = "до "+ loadCapacity.max;}
-       String from = loadCapacity.min == null ? "" : "от "+loadCapacity.max+" ";
-       String to = loadCapacity.max == null ? "" : "до "+loadCapacity.max;
-        System.out.println(getBrand()+" имеет грузоподьемность "+from+to);}
     }
 
-
+    @Override
+    public boolean servise() {
+        return Math.random() > 0.5;
+    }
 
 
 }
